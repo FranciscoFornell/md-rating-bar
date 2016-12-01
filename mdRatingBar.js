@@ -78,15 +78,11 @@
       
       scope.toggle = toggle;
 
-      if (isReadonly) {
-        updateStars();
-      } else {
-        scope.$watch('ratingValue', function(oldValue, newValue) {
-          if (newValue) {
-            updateStars();
-          }
-        });
-      }
+      scope.$watch('ratingValue', function(oldValue, newValue) {
+        if (newValue) {
+          updateStars();
+        }
+      });
 
       function toggle (index) {
         if (isReadonly === undefined || isReadonly === false){

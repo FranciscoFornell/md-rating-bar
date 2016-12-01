@@ -3,9 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <title>mdRatingBar demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  <link rel="stylesheet" href="lib/mdRatingBar.min.css">
 </head>
-<body>
-  <h1>Test</h1>
-  <p style="color: red;">It works!</p>
+<body ng-app="mdRatingBarDemo" ng-cloak>
+  <md-toolbar class="md-primary md-whiteframe-z2">
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>mdRatingBar demo</span>
+      </h3>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding layout-wrap ng-controller="demoController as vm" layout="row" layout-align="center">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Default</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.default)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Different size</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-max="10"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.size)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Custom colors</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-bg-color="#9ACBB3" rb-fill-color="#EC4830"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.colors)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Custom character icon</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-character-icon="&#9787"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.character)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Material Design svg star</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-md-svg-icon="star"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.svgStar)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Material Design custom svg icon</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-md-svg-icon="android"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.svgIcon)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Using current theme colors</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-use-md-theme-colors></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.theme)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>Read only</md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.value"></span>
+        <md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-readonly></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.readonly)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+  </md-content>
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-animate.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-aria.min.js"></script>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-messages.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script type="text/javascript" src="lib/mdRatingBar.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
