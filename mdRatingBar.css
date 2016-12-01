@@ -1,0 +1,14 @@
+.md-rating-bar {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  white-space: nowrap;
+}
+.md-rating-bar li{
+  padding: 1px;
+  list-style-type: none;
+  display: inline-block;
+  font-size: 2em;
+  -webkit-filter: drop-shadow(2px 2px 1px #aaa);
+  filter: drop-shadow(2px 2px 1px #aaa);
+}

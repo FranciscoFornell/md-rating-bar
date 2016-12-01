@@ -1,0 +1,31 @@
+{
+  "name": "md-rating-bar",
+  "version": "0.0.0",
+  "authors": [
+    "Francisco Fornell <fco.fornell@gmail.com>"
+  ],
+  "description": "AngularJS rating bar directive for Angular Material",
+  "main": "mdRatingBar.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "angular",
+    "directive",
+    "rating-bar",
+    "angular-material"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-material": "~1.1.0"
+  }
+}
