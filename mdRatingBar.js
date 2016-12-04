@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-  	.module('mdRatingBar', [])
-  	.directive('mdRatingBar', mdRatingBar);
+    .module('mdRatingBar', [])
+    .directive('mdRatingBar', mdRatingBar);
 
   mdRatingBar.$inject = ['$timeout', '$compile'];function mdRatingBar($timeout, $compile) {
     var directive = {
@@ -11,7 +11,6 @@
       scope: {
         ratingValue: '=ngModel',
         rbMax: '=?', // optional (default is 5)
-        rbOnSelect: '&?',
         rbOnUpdate: '&?',
         rbBgColor: '@?',
         rbFillColor: '@?',
@@ -81,20 +80,15 @@
       scope.$watch('ratingValue', function(oldValue, newValue) {
         if (newValue) {
           updateStars();
+          if (scope.rbOnUpdate && (oldValue !== newValue)){
+            $timeout(scope.rbOnUpdate, 300);
+          }
         }
       });
 
       function toggle (index) {
-        if (isReadonly === undefined || isReadonly === false){
+        if (!isReadonly){
           scope.ratingValue = index + 1;
-          if(scope.rbOnSelect){
-            scope.rbOnSelect({
-              rating: index + 1
-            });
-          }
-          if (scope.rbOnUpdate){
-            $timeout(scope.rbOnUpdate, 300);
-          }
         }
       }
 

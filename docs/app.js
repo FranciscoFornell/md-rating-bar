@@ -9,46 +9,60 @@
     })
     .controller('demoController', demoController);
 
-  demoController.$inject = ['$mdDialog'];
+  demoController.$inject = ['$mdDialog', '$mdToast'];
 
-  function demoController($mdDialog) {
+  function demoController($mdDialog, $mdToast) {
     var vm = this;
 
     vm.showCode = showCode;
+    vm.alertUpdateEvent = alertUpdateEvent;
 
     vm.value = 3;
     vm.examples = {
       default: {
         title: 'Default',
-        code: '<md-rating-bar ng-model="vm.value"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value"></md-rating-bar>',
+        value: 3
       },
       size: {
         title: 'Different size',
-        code: '<md-rating-bar ng-model="vm.value" rb-max="10"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-max="10"></md-rating-bar>',
+        value: 5
       },
       colors: {
         title: 'Custom colors',
-        code: '<md-rating-bar ng-model="vm.value" rb-bg-color="#9ACBB3" rb-fill-color="#EC4830"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-bg-color="#9ACBB3" rb-fill-color="#EC4830"></md-rating-bar>',
+        value: 3
       },
       character: {
         title: 'Custom character icon',
-        code: '<md-rating-bar ng-model="vm.value" rb-character-icon="&#9787"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-character-icon="&#9787"></md-rating-bar>',
+        value: 3
       },
       svgStar: {
         title: 'Material Design svg star',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star"></md-rating-bar>',
+        value: 3
       },
       svgIcon: {
         title: 'Material Design custom svg icon',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="android"></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="android"></md-rating-bar>',
+        value: 3
       },
       theme: {
         title: 'Using current theme colors',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-use-md-theme-colors></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-use-md-theme-colors></md-rating-bar>',
+        value: 3
       },
       readonly: {
         title: 'Read only',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-readonly></md-rating-bar>'
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-readonly></md-rating-bar>',
+        value: 3
+      },
+      updateEvent: {
+        title: 'Update event',
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-on-update="vm.alertUpdateEvent(vm.value)"></md-rating-bar>',
+        value: 3
       }
     }
 
@@ -62,6 +76,13 @@
           .ariaLabel('Example code dialog')
           .ok('Close')
           .targetEvent(ev)
+      );
+    }
+
+    function alertUpdateEvent(value) {
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent('Value updated to ' + value + '.')
       );
     }
   }

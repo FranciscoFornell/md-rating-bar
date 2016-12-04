@@ -21,7 +21,7 @@ A live [demo](http://franciscofornell.github.io/md-rating-bar/).
 This package is installable through the Bower package manager.
 
 ```
-bower install mr-rating-bar --save
+bower install md-rating-bar --save
 ```
 
 In your `index.html` file, include the rating bar module and style sheet.
@@ -40,5 +40,22 @@ angular.module('myApp', ['ngMaterial', 'mdRatingBar']);
 ```
 
 ## Usage
+
+The basic usage is:
+```html
+<md-rating-bar ng-model="value"></md-rating-bar>
+```
+You can add the following optional attributes for more funcionality:
+
+| Attribute              | Value           | Description                                                                                                                 |
+|------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
+| rb-max                 | Number          | It sets the maximum value. Default is 5.                                                                                    |
+| rb-bg-color            | Color code      | It sets the background color. Default is #DDDDDD.                                                                           |
+| rb-fill-color          | Color code      | It sets the fill color. Default is #FFDD00.                                                                                 |
+| rb-character-icon      | UTF-8 character | It sets the UTF-8 symbol used as icon. Default is ★.                                                                        |
+| rb-md-svg-icon         | Icon name       | It sets an svg icon as visual element. It requires $mdIconProvider to be configured with inline icon sets.                  |
+| rb-use-md-theme-colors |                 | Makes the rating bar colors to match the current Angular Material theme (which can be configured using $mdThemingProvider). |
+| rb-readonly            |                 | Makes the rating bar to be read-only.                                                                                       |
+| rb-on-update           | callback        | It sets the action to be taken when the value of the rating bar changes.                                                    |
 
 There are different examples of usage in the [demo page](http://franciscofornell.github.io/md-rating-bar/).
