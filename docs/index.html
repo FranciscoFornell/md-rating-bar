@@ -12,7 +12,7 @@
   <md-toolbar class="md-primary md-whiteframe-z2">
     <div class="md-toolbar-tools">
       <h3>
-        <span>mdRatingBar demo</span>
+        <a href="https://github.com/FranciscoFornell/md-rating-bar">mdRatingBar demo</a>
       </h3>
     </div>
   </md-toolbar>
@@ -87,6 +87,18 @@
       </md-card-content>
       <md-card-actions layout="row" layout-align="center">
         <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.svgIcon)">View code</md-button>
+      </md-card-actions>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text ng-bind="vm.examples.svgSrc.title"></md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        Value :<span ng-bind="vm.examples.svgSrc.value"></span>
+        <md-rating-bar ng-model="vm.examples.svgSrc.value" rb-md-svg-src="angular.svg"></md-rating-bar>
+      </md-card-content>
+      <md-card-actions layout="row" layout-align="center">
+        <md-button class="md-raised md-primary" ng-click="vm.showCode($event, vm.examples.svgSrc)">View code</md-button>
       </md-card-actions>
     </md-card>
     <md-card>

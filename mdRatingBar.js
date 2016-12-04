@@ -15,7 +15,8 @@
         rbBgColor: '@?',
         rbFillColor: '@?',
         rbCharacterIcon: '@?',
-        rbMdSvgIcon: '@?'
+        rbMdSvgIcon: '@?',
+        rbMdSvgSrc: '@?'
       },
       link: linkFn
     };
@@ -29,31 +30,37 @@
           defaultSize:
             '<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
               '<li' + generateAttr('click', 0) + '>' +
-                '<span ' + generateAttr('color', 0) + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', 0) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', 0) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', 0) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
               '<li' + generateAttr('click', 1) + '>' +
-                '<span ' + generateAttr('color', 1) + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', 1) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', 1) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', 1) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
               '<li' + generateAttr('click', 2) + '>' +
-                '<span ' + generateAttr('color', 2) + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', 2) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', 2) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', 2) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
               '<li' + generateAttr('click', 3) + '>' +
-                '<span ' + generateAttr('color', 3) + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', 3) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', 3) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', 3) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
               '<li' + generateAttr('click', 4) + '>' +
-                '<span ' + generateAttr('color', 4) + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', 4) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', 4) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', 4) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
             '</ul>',
           anySize:
             '<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
               '<li ng-repeat="star in stars"' + generateAttr('click', '$index') + '>' +
-                '<span ' + generateAttr('color', '$index') + ' ng-if="!rbMdSvgIcon">{{rbCharacterIcon}}</span>' +
+                '<span ' + generateAttr('color', '$index') + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
                 '<md-icon ' + generateAttr('color', '$index') + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
+                '<md-icon ' + generateAttr('color', '$index') + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
               '</li>' +
             '</ul>'
         };

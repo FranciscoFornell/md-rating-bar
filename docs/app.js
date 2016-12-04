@@ -3,11 +3,18 @@
 
   angular
     .module('mdRatingBarDemo', ['ngMaterial', 'mdRatingBar'])
-    .config(function($mdIconProvider) {
-      $mdIconProvider
-        .defaultIconSet('mdi.svg');
-    })
+    .config(setConfiguration)
     .controller('demoController', demoController);
+
+  setConfiguration.$inject = ['$mdIconProvider', '$compileProvider']
+
+  function setConfiguration ($mdIconProvider, $compileProvider) {
+    $compileProvider
+      .debugInfoEnabled(false);
+
+    $mdIconProvider
+      .defaultIconSet('mdi.svg');
+  }
 
   demoController.$inject = ['$mdDialog', '$mdToast'];
 
@@ -47,6 +54,11 @@
       svgIcon: {
         title: 'Material Design custom svg icon',
         code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="android"></md-rating-bar>',
+        value: 3
+      },
+      svgSrc: {
+        title: 'Custom svg icon from URL',
+        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-src="path/to/angular.svg"></md-rating-bar>',
         value: 3
       },
       theme: {

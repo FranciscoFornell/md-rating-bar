@@ -12,7 +12,7 @@ This software is provided free of charge and without restriction under the [MIT 
 
 ## Demo
 
-A live [demo](http://franciscofornell.github.io/md-rating-bar/).
+A live <a href="http://franciscofornell.github.io/md-rating-bar/" target="_blank">demo</a>.
 
 ## Installation
 
@@ -53,7 +53,8 @@ You can add the following optional attributes for more funcionality:
 | rb-bg-color            | Color code      | It sets the background color. Default is #DDDDDD.                                                                           |
 | rb-fill-color          | Color code      | It sets the fill color. Default is #FFDD00.                                                                                 |
 | rb-character-icon      | UTF-8 character | It sets the UTF-8 symbol used as icon. Default is ★.                                                                        |
-| rb-md-svg-icon         | Icon name       | It sets an svg icon as visual element. It requires $mdIconProvider to be configured with inline icon sets.                  |
+| rb-md-svg-icon         | Icon name       | It sets an SVG icon as visual element. It requires $mdIconProvider to be configured with inline icon sets.                  |
+| rb-md-svg-src          | URL             | It sets an SVG icon as visual element from an SVG file URL.                                                                 |
 | rb-use-md-theme-colors |                 | Makes the rating bar colors to match the current Angular Material theme (which can be configured using $mdThemingProvider). |
 | rb-readonly            |                 | Makes the rating bar to be read-only.                                                                                       |
 | rb-on-update           | callback        | It sets the action to be taken when the value of the rating bar changes.                                                    |
