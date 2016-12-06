@@ -24,64 +24,13 @@
     return directive;
 
     function linkFn(scope, element, attributes) {
-      var isReadonly = attributes.hasOwnProperty('rbReadonly'),
-        useMdThemeColors = attributes.hasOwnProperty('rbUseMdThemeColors'),
+      var isReadonly =  false,
+        useMdThemeColors = false,
         templates = {
-          defaultSize:
-            '<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
-              '<li' + generateAttr('click', 0) + '>' +
-                '<span ' + generateAttr('color', 0) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', 0) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', 0) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-              '<li' + generateAttr('click', 1) + '>' +
-                '<span ' + generateAttr('color', 1) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', 1) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', 1) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-              '<li' + generateAttr('click', 2) + '>' +
-                '<span ' + generateAttr('color', 2) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', 2) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', 2) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-              '<li' + generateAttr('click', 3) + '>' +
-                '<span ' + generateAttr('color', 3) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', 3) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', 3) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-              '<li' + generateAttr('click', 4) + '>' +
-                '<span ' + generateAttr('color', 4) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', 4) + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', 4) + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-            '</ul>',
-          anySize:
-            '<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
-              '<li ng-repeat="star in stars"' + generateAttr('click', '$index') + '>' +
-                '<span ' + generateAttr('color', '$index') + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
-                '<md-icon ' + generateAttr('color', '$index') + ' ng-if="rbMdSvgIcon" md-svg-icon="{{rbMdSvgIcon}}" aria-label="Rating Bar Icon"></md-icon>' +
-                '<md-icon ' + generateAttr('color', '$index') + ' ng-if="rbMdSvgSrc" md-svg-src="{{rbMdSvgSrc}}" aria-label="Rating Bar Icon"></md-icon>' +
-              '</li>' +
-            '</ul>'
+          defaultSize: '',
+          anySize: ''
         };
 
-      if (scope.rbBgColor === undefined) {
-        scope.rbBgColor = '#DDDDDD';
-      }
-      if (scope.rbFillColor === undefined) {
-        scope.rbFillColor = '#FFDD00';
-      }
-      if (scope.rbCharacterIcon === undefined) {
-        scope.rbCharacterIcon = '\u2605'; // UTF-8 black star symbol
-      }
-      if (scope.rbMax === undefined) {
-        scope.rbMax = 5;
-        element.html(templates.defaultSize);
-      } else {
-        element.html(templates.anySize);
-      }
-      $compile(element.contents())(scope);
-      
       scope.toggle = toggle;
 
       scope.$watch('ratingValue', function(oldValue, newValue) {
@@ -92,6 +41,63 @@
           }
         }
       });
+
+      activate();
+
+      function activate() {
+        // Set default values
+        isReadonly = attributes.hasOwnProperty('rbReadonly');
+        useMdThemeColors = attributes.hasOwnProperty('rbUseMdThemeColors');
+        if (scope.rbBgColor === undefined) {
+          scope.rbBgColor = '#DDDDDD';
+        }
+        if (scope.rbFillColor === undefined) {
+          scope.rbFillColor = '#FFDD00';
+        }
+        if (scope.rbCharacterIcon === undefined) {
+          scope.rbCharacterIcon = '\u2605'; // UTF-8 black star symbol
+        }
+
+        // Compose templates
+        templates.defaultSize = '<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
+          '<li' + generateAttr('click', 0) + '>' +
+            '<span ' + generateAttr('color', 0) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', 0) + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+          '<li' + generateAttr('click', 1) + '>' +
+            '<span ' + generateAttr('color', 1) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', 1) + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+          '<li' + generateAttr('click', 2) + '>' +
+            '<span ' + generateAttr('color', 2) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', 2) + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+          '<li' + generateAttr('click', 3) + '>' +
+            '<span ' + generateAttr('color', 3) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', 3) + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+          '<li' + generateAttr('click', 4) + '>' +
+            '<span ' + generateAttr('color', 4) + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', 4) + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+        '</ul>';
+        templates.anySize ='<ul class="md-rating-bar"'+ generateAttr('cursor') + '>' +
+          '<li ng-repeat="star in stars"' + generateAttr('click', '$index') + '>' +
+            '<span ' + generateAttr('color', '$index') + ' ng-if="!(rbMdSvgIcon||rbMdSvgSrc)">{{rbCharacterIcon}}</span>' +
+            '<md-icon ' + generateAttr('color', '$index') + ' ng-if="rbMdSvgIcon||rbMdSvgSrc" ' + generateAttr('icon') + ' aria-label="Rating Bar Icon"></md-icon>' +
+          '</li>' +
+        '</ul>';
+
+        // Select template and compile
+        if (scope.rbMax === undefined) {
+          scope.rbMax = 5;
+          element.html(templates.defaultSize);
+        } else {
+          element.html(templates.anySize);
+        }
+
+        $compile(element.contents())(scope);
+      }
 
       function toggle (index) {
         if (!isReadonly){
@@ -133,6 +139,13 @@
               string = 'md-colors="{color: \'{{stars[' + (index || 0) + '].color}}\'}"';
             } else {
               string = 'ng-style="{color: stars[' + (index || 0) + '].color}"';
+            }
+            break;
+          case 'icon':
+            if(scope.rbMdSvgIcon) {
+              string = 'md-svg-icon="{{rbMdSvgIcon}}"';
+            } else if (scope.rbMdSvgSrc){
+              string = 'md-svg-src="{{rbMdSvgSrc}}"';
             }
             break;
           default:

@@ -1,5 +1,5 @@
 #mdRatingBar
-mdRatingBar is an Angular rating bar directive for use with Angular Material.
+mdRatingBar is an Angular rating bar directive for use with [Angular Material](https://material.angularjs.org).
 
 * [License](#license)
 * [Demo](#demo)
@@ -12,7 +12,7 @@ This software is provided free of charge and without restriction under the [MIT 
 
 ## Demo
 
-A live <a href="http://franciscofornell.github.io/md-rating-bar/" target="_blank">demo</a>.
+A live [demo](http://franciscofornell.github.io/md-rating-bar/).
 
 ## Installation
 
