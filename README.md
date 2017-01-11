@@ -55,8 +55,23 @@ You can add the following optional attributes for more funcionality:
 | rb-character-icon      | UTF-8 character | It sets the UTF-8 symbol used as icon. Default is ★.                                                                        |
 | rb-md-svg-icon         | Icon name       | It sets an SVG icon as visual element. It requires $mdIconProvider to be configured with inline icon sets.                  |
 | rb-md-svg-src          | URL             | It sets an SVG icon as visual element from an SVG file URL.                                                                 |
+| rbMdFontIcon           | Options object with a fontSet property and a iconName property        | It sets an icon from an icons font set as visual element                                                    |
 | rb-use-md-theme-colors |                 | Makes the rating bar colors to match the current Angular Material theme (which can be configured using $mdThemingProvider). |
 | rb-readonly            |                 | Makes the rating bar to be read-only.                                                                                       |
 | rb-on-update           | callback        | It sets the action to be taken when the value of the rating bar changes.                                                    |
 
 There are different examples of usage in the [demo page](http://franciscofornell.github.io/md-rating-bar/).
+
+## Testing
+
+Jasmine tests have been included in the tests folder. You can use any server to serve the files and test it, but probably the easiest way is to use python:
+
+In the project's folder run:
+```
+python -m SimpleHTTPServer
+```
+and when you see the message:
+```
+Serving HTTP on 0.0.0.0 port 8000 ...
+```
+you can open a web browser and write localhost:8000/tests in the adress bar.

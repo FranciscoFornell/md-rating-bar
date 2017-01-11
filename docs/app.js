@@ -75,6 +75,11 @@
         title: 'Update event',
         code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-on-update="vm.alertUpdateEvent(vm.value)"></md-rating-bar>',
         value: 3
+      },
+      iconFont: {
+        title: 'Icon font',
+        code: '<md-rating-bar ng-model="vm.examples.iconFont.value" rb-md-font-icon="{ fontSet: \'material-icons\', iconName: \'favorite\'}"></md-rating-bar>',
+        value: 3
       }
     }
 
