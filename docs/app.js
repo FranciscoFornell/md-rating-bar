@@ -46,11 +46,6 @@
         code: '<md-rating-bar ng-model="vm.value" rb-character-icon="&#9787"></md-rating-bar>',
         value: 3
       },
-      svgStar: {
-        title: 'Material Design svg star',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star"></md-rating-bar>',
-        value: 3
-      },
       svgIcon: {
         title: 'Material Design custom svg icon',
         code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="android"></md-rating-bar>',

@@ -4,7 +4,8 @@ describe('Rating bar directive default behaviour', function () {
     scope,
     ratingBarHTML = "<div><md-rating-bar ng-model=\"value\"></md-rating-bar></div>",
     ratingBarElement;
-  beforeEach(module('mdRatingBar'));
+
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -29,8 +30,9 @@ describe('Rating bar directive default behaviour', function () {
     expect(ratingBarElement.find('li').length).toBe(5);
   });
   
-  it('should fill each element with an UTF-8 black star character', function() {
-    expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605');
+  it('should fill each element with an svg material design star icon', function() {
+    expect(ratingBarElement.find('g').length).not.toBe(0);
+    expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
   });      
   
   it('should set the fill color to rgb(255, 221, 0)', function() {
@@ -66,7 +68,8 @@ describe('rb-max', function () {
     scope,
     ratingBarHTML = "<div><md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar></div>",
     ratingBarElement;
-  beforeEach(module('mdRatingBar'));
+
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -161,7 +164,7 @@ describe('rb-bg-color', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(module('mdRatingBar'));
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -369,7 +372,7 @@ describe('rb-fill-color', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(module('mdRatingBar'));
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -572,7 +575,7 @@ describe('rb-character-icon', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(module('mdRatingBar'));
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -598,7 +601,7 @@ describe('rb-character-icon', function () {
       expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -606,7 +609,8 @@ describe('rb-character-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should set the value as element icon', function() {
@@ -637,7 +641,7 @@ describe('rb-character-icon', function () {
       expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -645,7 +649,8 @@ describe('rb-character-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should set the value as element icon', function() {
@@ -671,7 +676,7 @@ describe('rb-md-svg-icon', function () {
     ratingBarElement;
 
   beforeEach(function(){
-    module('mdRatingBar', 'ngMaterial', 'ngMockE2E', function(_$mdIconProvider_) {
+    module('ngMaterial', 'mdRatingBar', 'ngMockE2E', function(_$mdIconProvider_) {
       $mdIconProvider = _$mdIconProvider_;
       $mdIconProvider
         .defaultIconSet('core.svg')
@@ -698,7 +703,7 @@ describe('rb-md-svg-icon', function () {
   });
 
   describe('when size is default', function(){
-    it('should set the default star character icon when value is blank', function() {
+    it('should set the default svg material design star icon when value is blank', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-icon=\"\"></md-rating-bar>' +
@@ -706,10 +711,11 @@ describe('rb-md-svg-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -717,7 +723,8 @@ describe('rb-md-svg-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should make the bar to be empty when there are no svg source files configured in $mdIconProvider', function() {
@@ -762,7 +769,7 @@ describe('rb-md-svg-icon', function () {
       scope.size = 10;
     });
 
-    it('should set the default star character icon when value is blank', function() {
+    it('should set the default svg material design star icon when value is blank', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-icon=\"\"></md-rating-bar>' +
@@ -770,10 +777,11 @@ describe('rb-md-svg-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -781,7 +789,8 @@ describe('rb-md-svg-icon', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should make the bar to be empty when there are no svg source files configured in $mdIconProvider', function() {
@@ -831,7 +840,7 @@ describe('rb-md-svg-src', function () {
     ratingBarElement;
 
   beforeEach(function(){
-    module('mdRatingBar', 'ngMaterial', 'ngMockE2E');
+    module('ngMaterial', 'mdRatingBar', 'ngMockE2E');
   });
   
   beforeEach(inject(function(_$templateCache_, _$compile_, _$rootScope_, $injector){
@@ -841,7 +850,7 @@ describe('rb-md-svg-src', function () {
     $httpBackend.whenGET('core.svg').passThrough();
     $httpBackend.whenGET('notfoundicon.svg').passThrough();
     $templateCache = _$templateCache_;
-    $templateCache.put('star.svg', '<svg><g id="star"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>');
+    $templateCache.put('star_file.svg', '<svg><g id="star"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>');
 
     scope = $rootScope.$new();
     scope.value = 3;
@@ -852,7 +861,7 @@ describe('rb-md-svg-src', function () {
   });
 
   describe('when size is default', function(){
-    it('should set the default star character icon when value is blank', function() {
+    it('should set the default svg material design star icon when value is blank', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"\"></md-rating-bar>' +
@@ -860,10 +869,11 @@ describe('rb-md-svg-src', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -871,7 +881,8 @@ describe('rb-md-svg-src', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should make the bar to be empty when file does not exist', function() {
@@ -890,7 +901,7 @@ describe('rb-md-svg-src', function () {
     it('should set the elements icon when there is an icon in the file', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
-          '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"star.svg\"></md-rating-bar>' +
+          '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"star_file.svg\"></md-rating-bar>' +
         '</div>'
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
@@ -904,7 +915,7 @@ describe('rb-md-svg-src', function () {
       scope.size = 10;
     });
 
-    it('should set the default star character icon when value is blank', function() {
+    it('should set the default svg material design star icon when value is blank', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"\"></md-rating-bar>' +
@@ -912,10 +923,11 @@ describe('rb-md-svg-src', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
-    it('should set the default star character icon when value is undefined', function() {
+    it('should set the default svg material design star icon when value is undefined', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
           '<md-rating-bar ng-model=\"value\" rb-max=\"size\"></md-rating-bar>' +
@@ -923,7 +935,8 @@ describe('rb-md-svg-src', function () {
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
       scope.$apply();
-      expect(ratingBarElement.find('span')[0].innerHTML).toBe('\u2605')
+      expect(ratingBarElement.find('g').length).not.toBe(0);
+      expect(ratingBarElement.find('g').attr('id')).toBe('default_star');
     });
 
     it('should make the bar to be empty when file does not exist', function() {
@@ -942,7 +955,7 @@ describe('rb-md-svg-src', function () {
     it('should set the elements icon when there is an icon in the file', function() {
       ratingBarElement = $compile(angular.element(
         '<div>' +
-          '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"star.svg\"></md-rating-bar>' +
+          '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-md-svg-src=\"star_file.svg\"></md-rating-bar>' +
         '</div>'
       ))(scope);
       angular.element(document).find('body').append(ratingBarElement);
@@ -958,7 +971,7 @@ describe('rb-use-md-theme-colors  ', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(module('mdRatingBar', 'ngMaterial', 'ngMockE2E', function(_$mdIconProvider_) {
+  beforeEach(module('ngMaterial', 'mdRatingBar', 'ngMockE2E', function(_$mdIconProvider_) {
     $mdIconProvider = _$mdIconProvider_;
     $mdIconProvider
       .defaultIconSet('core.svg');
@@ -985,7 +998,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set fill color to the current theme accent color with no hue', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -996,7 +1009,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set background color to the current theme primary color with hue-100', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1007,7 +1020,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set the fill color appropriately when the model changes or an element is clicked', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1030,7 +1043,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set the background color appropriately when the model changes or an element is clicked', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1131,7 +1144,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set fill color to the current theme accent color with no hue', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1142,7 +1155,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set background color to the current theme primary color with hue-100', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1153,7 +1166,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set the fill color appropriately when the model changes or an element is clicked', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1176,7 +1189,7 @@ describe('rb-use-md-theme-colors  ', function () {
       it('should set the background color appropriately when the model changes or an element is clicked', function() {
         ratingBarElement = $compile(angular.element(
           '<div>' +
-            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-use-md-theme-colors></md-rating-bar>' +
+            '<md-rating-bar ng-model=\"value\" rb-max=\"size\" rb-character-icon=\"&#9824\" rb-use-md-theme-colors></md-rating-bar>' +
           '</div>'
         ))(scope);
         angular.element(document).find('body').append(ratingBarElement);
@@ -1274,7 +1287,7 @@ describe('rb-readonly', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(module('mdRatingBar'));
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_){
     $compile = _$compile_;
@@ -1361,9 +1374,7 @@ describe('rb-on-update', function () {
     scope,
     ratingBarElement;
 
-  beforeEach(function(){
-    module('mdRatingBar');
-  });
+  beforeEach(module('ngMaterial', 'mdRatingBar'));
   
   beforeEach(inject(function(_$compile_, _$rootScope_, _$timeout_){
     $compile = _$compile_;

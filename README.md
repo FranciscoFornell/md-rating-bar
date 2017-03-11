@@ -45,7 +45,7 @@ The basic usage is:
 ```html
 <md-rating-bar ng-model="value"></md-rating-bar>
 ```
-You can add the following optional attributes for more funcionality:
+By default it uses an svg star with material design style and a yellow fill color, but you can add the following optional attributes for more funcionality:
 
 | Attribute              | Value           | Description                                                                                                                 |
 |------------------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------|
