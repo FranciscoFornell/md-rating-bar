@@ -58,17 +58,17 @@
       },
       theme: {
         title: 'Using current theme colors',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-use-md-theme-colors></md-rating-bar>',
+        code: '<md-rating-bar ng-model="vm.value" rb-use-md-theme-colors></md-rating-bar>',
         value: 3
       },
       readonly: {
         title: 'Read only',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-readonly></md-rating-bar>',
+        code: '<md-rating-bar ng-model="vm.value" rb-readonly></md-rating-bar>',
         value: 3
       },
       updateEvent: {
         title: 'Update event',
-        code: '<md-rating-bar ng-model="vm.value" rb-md-svg-icon="star" rb-on-update="vm.alertUpdateEvent(vm.value)"></md-rating-bar>',
+        code: '<md-rating-bar ng-model="vm.value" rb-on-update="vm.alertUpdateEvent(vm.value)"></md-rating-bar>',
         value: 3
       },
       iconFont: {
